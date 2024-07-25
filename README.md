@@ -15,18 +15,16 @@ The General Election Result Report Dashboard provides a detailed and interactive
 - Step 4 : It was observed that in few of the columns errors & empty values were present.
 - Step 5 : Replaced the null values or - value with 0. 
 - Step 6 : A new column been inserted to capitalize each word of candidates column and renamed it to Candidates name.         
-- Step 7 : Measure table was vreated to store measures and new measure was created to find total count of Candidates.
+- Step 7 : Measure table was created to store measures and new measure was created to find total count of Candidates.
 
 Following DAX expression was written for the same,
         
-        Total Candidates = 
-DISTINCTCOUNT(LokSabha_2024_Results[Candidate])
+        Total Candidates = DISTINCTCOUNT(LokSabha_2024_Results[Candidate])
 - Step 8 : New measure was created to find  Total count of Parties,
  
  Following DAX expression was written to find Total count of parties,
  
-        Total Parties = 
-DISTINCTCOUNT(LokSabha_2024_Results[Party])
+        Total Parties = DISTINCTCOUNT(LokSabha_2024_Results[Party])
 - Step 9 : New measure was created to calculate All Seats.
  
  Following DAX expression was written to find All Seats,
@@ -36,8 +34,7 @@ DISTINCTCOUNT(LokSabha_2024_Results[Party])
  
  Following DAX expression was written to find All Votes,
  
-         All Votes = 
-CALCULATE(
+         All Votes = CALCULATE(
     [Total Votes], 
     ALL(
         LokSabha_2024_Results
@@ -47,46 +44,40 @@ CALCULATE(
  
  Following DAX expression was written to find Independent Candidates,
  
-         Independent Candidates = 
-CALCULATE(
+         Independent Candidates = CALCULATE(
     [Total Candidates], 
     LokSabha_2024_Results[Party] = "Independent")  
 - Step 12 : New measure was created to calculate Independent Winner Candidates.
  
  Following DAX expression was written to find Independent Winner Candidates,
  
-        Independent Winner Candidates = 
-CALCULATE(
+        Independent Winner Candidates = CALCULATE(
     [Independent Candidates],
     LokSabha_2024_Results[Result] = "Won")
 - Step 13 : New measure was created to calculate NOTA Votes.
  
  Following DAX expression was written to find NOTA Votes,
  
-        Nota Votes = 
-CALCULATE(
+        Nota Votes = CALCULATE(
     [Total Votes], 
     LokSabha_2024_Results[Candidate] = "NOTA")
 - Step 14 : New measure was created to calculate Total Seats.
  
  Following DAX expression was written to find Total Seats,
  
-        Total Seats = 
-CALCULATE(
+        Total Seats = CALCULATE(
     [Total Candidates], 
     LokSabha_2024_Results[Result] = "Won")  
 - Step 15 : New measure was created to calculate Total Votes.
  
  Following DAX expression was written to find Total Votes,
  
-        Total Votes = 
-SUM(LokSabha_2024_Results[Total Votes])
+        Total Votes = SUM(LokSabha_2024_Results[Total Votes])
 - Step 16 : New measure was created to calculate Total Winners.
  
  Following DAX expression was written to find Total Winners,
  
-        Total Winners = 
-CALCULATE(
+        Total Winners = CALCULATE(
     [Total Candidates], 
     LokSabha_2024_Results[Result] = "Won"
     ) 
@@ -94,8 +85,7 @@ CALCULATE(
  
  Following DAX expression was written to find % of Total Votes,
  
-        % of Total Votes = 
-DIVIDE([Total Votes], [All Votes])     
+        % of Total Votes = DIVIDE([Total Votes], [All Votes])     
 - Step 18 : New measure was created to calculate Total EVM Votes.
  
  Following DAX expression was written to find Total EVM Votes,
@@ -105,32 +95,28 @@ DIVIDE([Total Votes], [All Votes])
  
  Following DAX expression was written to find BJP Candidates,
  
-        BJP Candidates = 
-CALCULATE(
+        BJP Candidates = CALCULATE(
     [Total Candidates], 
     LokSabha_2024_Results[Party] = "Bharatiya Janata Party")   
 - Step 20 : New measure was created to calculate BJP Total Seats.
  
  Following DAX expression was written to find BJP Total Seats,
  
-        BJP Total Seats = 
-CALCULATE(
+        BJP Total Seats = CALCULATE(
     [BJP Candidates], 
     LokSabha_2024_Results[Result] = "Won")
 - Step 21 : New measure was created to calculate INC Candidates.
  
  Following DAX expression was written to find INC Candidates,
  
-        INC Candidates = 
-CALCULATE(
+        INC Candidates = CALCULATE(
     [Total Candidates], 
     LokSabha_2024_Results[Party] = "Indian National Congress")      
 - Step 22 : New measure was created to calculate INC Total Seats.
  
  Following DAX expression was written to find INC Total Seats,
  
-        INC Total Seats = 
-CALCULATE(
+        INC Total Seats = CALCULATE(
     [INC Candidates], 
     LokSabha_2024_Results[Result] = "Won")                               
 - Step 23 : In the report view, under the view tab, theme was selected.
